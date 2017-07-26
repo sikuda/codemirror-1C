@@ -6,6 +6,7 @@
 <script src="lib/codemirror.js"></script>
 
 <script src="mode/1c/1c.js"></script>
+<script src="1Cjs.js"></script>
 <link rel="stylesheet" href="theme/1c.css">
 
 <!--
@@ -17,87 +18,53 @@
 <link rel="stylesheet" href="addon/dialog/dialog.css"> -->
 
 <body>
-<textarea id="code" name="code"></textarea>
-<script type="text/javascript">
-  codeArea = document.getElementById('code');
-  
-  var editor = CodeMirror.fromTextArea(codeArea, {
-        lineNumbers: true,
-        indentWithTabs: true,
-        styleActiveLine: true,
-        lineWrapping: true,
-        smartIndent: true,
-        electricChars:false,
-        autofocus: true,
-        indentUnit: 4,
-        readOnly: false,
-        highlightSelectionMatches: {showToken: /[0-9a-zA-Zа-яёА-ЯЁ&]/, annotateScrollbar: false},
-        mode: "text/x-1c",
-        theme: '1c'
+  <form>
+    <input type="button" value="Execute/Выполнить" onclick="doExecute()">
+    <textarea id="code" name="code"></textarea>
+  </form>
+  <div id="outputPanel"></div>
+  <script type="text/javascript">
+    codeArea = document.getElementById('code');
+
+    var editor = CodeMirror.fromTextArea(codeArea, {
+      lineNumbers: true,
+      indentWithTabs: true,
+      styleActiveLine: true,
+      lineWrapping: true,
+      smartIndent: true,
+      electricChars:false,
+      autofocus: true,
+      indentUnit: 4,
+      readOnly: false,
+      highlightSelectionMatches: {showToken: /[0-9a-zA-Zа-яёА-ЯЁ&]/, annotateScrollbar: false},
+      mode: "text/x-1c",
+      theme: '1c'
     });
 
-  var content = 'Если file = "" Тогда\nxx=1; //xx\nИначе\nКонецЕсли;\n\n&НаСервере\nПроцедура\n ОбновитьОбработку(Результат, ДопПараметры) Экспорт //\nПерем сс;\nЕсли Результат = КодВозвратаДиалога.Да Тогда\n//прим\nКонецЕсли;\n\nЕсли file = "" Тогда\nВозврат;\nКонецЕсли;\n\nЕсли Лев( file,5) = "e1cib" Тогда\nДанные = Новый ДвоичныеДанные(ИмяВремФайла);\nЕсли ЗаписатьВнешниюОбработкуВБазу(Данные) Тогда\n//ОткрытьФорму("ВнешняяОбработка.SeftUpdateManage.Форма",,,Истина);\nЭтаФорма.Закрыть();\nКонецЕсли;\nВозврат;\nИначе\nОповещение = Новый ОписаниеОповещения( "ОбработкаПомеремещениеФайла", ЭтотОбъект);\nНачатьПеремещениеФайла(Оповещение, ИмяВремФайла, file);\nКонецЕсли;\n\nКонецПроцедуры';
+    var content = 'Если file = "" Тогда\nxx=1; //xx\nИначе\nКонецЕсли;\n\n&НаСервере\nПроцедура\n ОбновитьОбработку(Результат, ДопПараметры) Экспорт //\nПерем сс;\nЕсли Результат = КодВозвратаДиалога.Да Тогда\n//прим\nКонецЕсли;\n\nЕсли file = "" Тогда\nВозврат;\nКонецЕсли;\n\nЕсли Лев( file,5) = "e1cib" Тогда\nДанные = Новый ДвоичныеДанные(ИмяВремФайла);\nЕсли ЗаписатьВнешниюОбработкуВБазу(Данные) Тогда\n//ОткрытьФорму("ВнешняяОбработка.SeftUpdateManage.Форма",,,Истина);\nЭтаФорма.Закрыть();\nКонецЕсли;\nВозврат;\nИначе\nОповещение = Новый ОписаниеОповещения( "ОбработкаПомеремещениеФайла", ЭтотОбъект);\nНачатьПеремещениеФайла(Оповещение, ИмяВремФайла, file);\nКонецЕсли;\n\nКонецПроцедуры';
 
-  editor.setValue(content);
-  for (var i =0; i< editor.lineCount(); i++) { editor.indentLine(i); }
-   
-  editor.setOption("extraKeys", {
-    'Ctrl-/':     function(cm){cm.lineComment(cm.getCursor("from"),cm.getCursor("to"), {lineComment: '//', indent: true});},
-    'Shift-Ctrl-/': function(cm){cm.uncomment(editor.getCursor("from"),editor.getCursor("to"), {lineComment: '//', indent: true});},
+    editor.setValue(content);
+    for (var i =0; i< editor.lineCount(); i++) { editor.indentLine(i); }
+
+      editor.setOption("extraKeys", {
+        'Ctrl-/':     function(cm){cm.lineComment(cm.getCursor("from"),cm.getCursor("to"), {lineComment: '//', indent: true});},
+        'Shift-Ctrl-/': function(cm){cm.uncomment(editor.getCursor("from"),editor.getCursor("to"), {lineComment: '//', indent: true});},
     //'Alt-Shift-F': function(cm){cm.indentLine()},
     //'Ctrl-L': editor.execCommand("deleteLine"), - execute in browser
     'Ctrl-Space': "autocomplete"
   });
-  
-  function setSize(){
-    editor.setSize( "100%", "100%");
-  }
 
-  //for inside 1C
-  function KeyTransfer(keyNumber,ctrlKey,shiftKey,altKey){
-    if ((keyNumber==39) && (document.getElementById('hints')!=null)){//Используем стрелку вправо как энтер при показе подсказки
-      KeyTransfer(13,false,false,false);
-      return;
-    } 
+    function setSize(){
+      editor.setSize( "100%", "100%");
+    }
 
-    var evObj = document.createEvent('UIEvents');
-    evObj.type = "keydown";
-    evObj.keyCode   = keyNumber;
-    evObj.which     = keyNumber;
-    evObj.ctrlKey   = ctrlKey;
-    evObj.shiftKey  = shiftKey;
-    evObj.altKey    = altKey;
-    evObj.cancelable = true;
+    function doExecute(){
+      var context = editor.getValue();
+      var str = Transfer1CJS(context);
+      var x = document.getElementById("outputPanel");
+      x.textContent = str;
+    }
 
-    editor.triggerOnKeyDown(evObj);
-    //editor.KeyDown(editor,evObj);
-  }
-
-  function SetCode1C(textQuery){
-    editor.setValue(textQuery);
-    editor.clearHistory();
-  }
-  
-  function GetCode1C(param){
-    //return editor.getValue(); //return ComObject in 1C
-    editor.save();
-    return document.getElementById('code').value;
-  }
-  
-  function setCursor(param){
-    return editor.setCursor(1,1);
-  } 
-  
-  function indentAuto(param){
-    editor.execCommand("indentAuto");
-  }
-  
-  function indentLess(param){
-    editor.execCommand("indentLess");
-  }
-  function autocomplete(param){
-    editor.execCommand("autocomplete");
-  } 
-</script>  
+  </script>  
 </body>  
 
