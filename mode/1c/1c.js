@@ -245,7 +245,6 @@ CodeMirror.defineMode("1c", function(conf, parserConf) {
                 return ERRORCLASS;
             }
         }
-
         return style;
     }
 

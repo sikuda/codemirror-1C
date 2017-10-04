@@ -4,25 +4,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=10"/>
 <link rel="stylesheet" href="lib/codemirror.css">
 <script src="lib/codemirror.js"></script>
-
+<script src="mode/javascript/javascript.js"></script>
 <script src="mode/1c/1c.js"></script>
 <script src="1Cjs.js"></script>
 <link rel="stylesheet" href="theme/1c.css">
-
-<!--
-<script src="addon/comment/comment.js"></script>
-<script src="addon/search/search.js"></script>
-<script src="addon/search/searchcursor.js"></script>
-<script src="addon/search/jump-to-line.js"></script>
-<script src="addon/dialog/dialog.js"></script>
-<link rel="stylesheet" href="addon/dialog/dialog.css"> -->
-
 <body>
   <form>
-    <input type="button" value="Execute/Выполнить" onclick="doExecute()">
     <textarea id="code" name="code"></textarea>
+    <input type="button" value="Transfer/Перенести" onclick="doExecute()">
   </form>
-  <div id="outputPanel"></div>
+  <textarea id="codeJS" name="codeJS"></textarea>
   <script type="text/javascript">
     codeArea = document.getElementById('code');
 
@@ -45,24 +36,28 @@
 
     editor.setValue(content);
     for (var i =0; i< editor.lineCount(); i++) { editor.indentLine(i); }
+    editor.setSize("100%","49%");
 
-      editor.setOption("extraKeys", {
-        'Ctrl-/':     function(cm){cm.lineComment(cm.getCursor("from"),cm.getCursor("to"), {lineComment: '//', indent: true});},
-        'Shift-Ctrl-/': function(cm){cm.uncomment(editor.getCursor("from"),editor.getCursor("to"), {lineComment: '//', indent: true});},
-    //'Alt-Shift-F': function(cm){cm.indentLine()},
-    //'Ctrl-L': editor.execCommand("deleteLine"), - execute in browser
-    'Ctrl-Space': "autocomplete"
-  });
+    codeJS = document.getElementById('codeJS');
 
-    function setSize(){
-      editor.setSize( "100%", "100%");
-    }
-
+    var editorJS = CodeMirror.fromTextArea(codeJS, {
+      lineNumbers: true,
+      indentWithTabs: true,
+      styleActiveLine: true,
+      lineWrapping: true,
+      smartIndent: true,
+      electricChars:false,
+      autofocus: true,
+      indentUnit: 4,
+      readOnly: false,
+      mode: {name: "javascript", json: true},
+    });
+    
     function doExecute(){
       var context = editor.getValue();
-      var str = Transfer1CJS(context);
-      var x = document.getElementById("outputPanel");
-      x.textContent = str;
+      var str = Transfer1CJS(context, 'ru');
+      editorJS.setValue(str);
+      editorJS.setSize("100%","49%");
     }
 
   </script>  
