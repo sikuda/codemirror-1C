@@ -18,3 +18,5 @@ Work files
 
 Пример использования плагина:
 [codemirror1c] Код1С [/codemirror1c]
+
+- codemirror.zip - получившийся плагин Wordpress 
