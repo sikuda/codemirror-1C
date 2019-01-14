@@ -1,5 +1,5 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
-// 1C - test - http://sikuda.ru/1c/CodeMirror/ 
+// for 1C - http://code1c.sikuda.ru/
 // Distributed under an MIT license: http://codemirror.net/LICENSE
 
 (function(mod) {
@@ -18,10 +18,7 @@ CodeMirror.defineMode("1c", function(conf, parserConf) {
     function wordRegexp(words) {
         return new RegExp("^((" + words.join(")|(") + "))([ ;\\/\\n\\t]|$)", "i"); //\\b \\W //[^$A-Za-z0-9А-ЯЁа-яё_]
     }
-    //function wordRegexp2(words) {
-    //    return new RegExp("^((" + words.join(")|(") + "))[ \\/\\n\\t]*", "i"); //\\b \\W //[^$A-Za-z0-9А-ЯЁа-яё_]
-    //}
-
+    
     var singleOperators = new RegExp("^[\\+\\-\\*/%&<>=]");
     var singleDelimiters = new RegExp("^[\\(\\)\\[\\]\\{\\},:=;\\.]");
     var doubleOperators = new RegExp("^((<>)|(<=)|(>=))");
@@ -110,7 +107,7 @@ CodeMirror.defineMode("1c", function(conf, parserConf) {
             // Octal
             else if (stream.match(/^&O[0-7]+/i)) { intLiteral = true; }
             // Decimal
-            else if (stream.match(/^[1-9]\d*F?/)) {
+            else if (stream.match(/^[0-9]\d*F?/)) {
                 // Decimal literals may be "imaginary"
                 stream.eat(/J/i);
                 // TODO - Can you have imaginary longs?
@@ -216,19 +213,6 @@ CodeMirror.defineMode("1c", function(conf, parserConf) {
     function tokenLexer(stream, state) {
         var style = state.tokenize(stream, state);
         var current = stream.current();
-
-        //not for 1C
-        // Handle '.' connected identifiers
-        //if (current === '.') {
-        //    style = state.tokenize(stream, state);
-        //    current = stream.current();
-        //    if (style === 'variable') {
-        //        return 'variable';
-        //    } else {
-        //        return ERRORCLASS;
-        //    }
-        //}
-
 
         var delimiter_index = '[({'.indexOf(current);
         if (delimiter_index !== -1) {
