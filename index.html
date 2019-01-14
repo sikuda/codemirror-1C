@@ -9,14 +9,9 @@
 <script src="1Cjs.js"></script>
 <link rel="stylesheet" href="theme/1c.css">
 <body>
-  <form>
-    <textarea id="code" name="code"></textarea>
-    <input type="button" value="Transfer/Перенести" onclick="doExecute()">
-  </form>
-  <textarea id="codeJS" name="codeJS"></textarea>
+  <textarea id="code" name="code"></textarea>
   <script type="text/javascript">
     codeArea = document.getElementById('code');
-
     var editor = CodeMirror.fromTextArea(codeArea, {
       lineNumbers: true,
       indentWithTabs: true,
@@ -31,35 +26,9 @@
       mode: "text/x-1c",
       theme: '1c'
     });
-
     var content = 'Если file = "" Тогда\nxx=1; //xx\nИначе\nКонецЕсли;\n\n&НаСервере\nПроцедура\n ОбновитьОбработку(Результат, ДопПараметры) Экспорт //\nПерем сс;\nЕсли Результат = КодВозвратаДиалога.Да Тогда\n//прим\nКонецЕсли;\n\nЕсли file = "" Тогда\nВозврат;\nКонецЕсли;\n\nЕсли Лев( file,5) = "e1cib" Тогда\nДанные = Новый ДвоичныеДанные(ИмяВремФайла);\nЕсли ЗаписатьВнешниюОбработкуВБазу(Данные) Тогда\n//ОткрытьФорму("ВнешняяОбработка.SeftUpdateManage.Форма",,,Истина);\nЭтаФорма.Закрыть();\nКонецЕсли;\nВозврат;\nИначе\nОповещение = Новый ОписаниеОповещения( "ОбработкаПомеремещениеФайла", ЭтотОбъект);\nНачатьПеремещениеФайла(Оповещение, ИмяВремФайла, file);\nКонецЕсли;\n\nКонецПроцедуры';
-
     editor.setValue(content);
     for (var i =0; i< editor.lineCount(); i++) { editor.indentLine(i); }
     editor.setSize("100%","49%");
-
-    codeJS = document.getElementById('codeJS');
-
-    var editorJS = CodeMirror.fromTextArea(codeJS, {
-      lineNumbers: true,
-      indentWithTabs: true,
-      styleActiveLine: true,
-      lineWrapping: true,
-      smartIndent: true,
-      electricChars:false,
-      autofocus: true,
-      indentUnit: 4,
-      readOnly: false,
-      mode: {name: "javascript", json: true},
-    });
-    
-    function doExecute(){
-      var context = editor.getValue();
-      var str = Transfer1CJS(context, 'ru');
-      editorJS.setValue(str);
-      editorJS.setSize("100%","49%");
-    }
-
   </script>  
-</body>  
-
+</body> 
