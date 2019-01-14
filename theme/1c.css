@@ -1,11 +1,27 @@
-/* 1c theme for codemirror */
+/* 1c theme for codemirror 
+   Тема сделана по цветовому оформлению в 1С по умолчанию и полностью соответствует работе внутри самой систеиы 1С. 
+   Цветовое оформление не самое приятное на вид, но узнаваемое при любом кусочке кода. Будем его придерживаться.
+   MIT licence as parent - http://codemirror.net/LICENSE 
+*/
+
+/**/
+.cm-s-1c.CodeMirror-scroll-1c :focus {
+  /* overflow: scroll !important; /* Things will break if this is overridden */
+  /* 30px is the magic margin used to hide the element's real scrollbars */
+  /* See overflow: hidden in .CodeMirror */
+  margin-bottom: 30px; margin-right: 30px;
+  /*padding-bottom: 10px;*/
+  height: 100%;
+  outline: none; /* Prevent dragging from highlighting the element */
+  position: relative;
+}
 
 /* Color scheme */
 .cm-s-1c.CodeMirror {
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
   height: 600px;
-  color: gray;
+  /*color: gray;*/
   background-color:#ffffff;
   color:#2e383c;
   line-height:1.4375;
@@ -46,4 +62,5 @@
   border-right: none;
   width: 0;
 }
+
 
