@@ -1,4 +1,4 @@
-Add to project codemirror.net for 1C languge(http://1c.ru).(Дополнения для проекта codemirror.net для языка 1С.)
+Add to project codemirror.net for 1C languge/http://1c.ru/. (Дополнения для проекта codemirror.net для языка 1С.)
 http://code1c.sikuda.ru
 MIT licence as parent - http://codemirror.net/LICENSE
 
