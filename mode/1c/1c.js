@@ -26,7 +26,7 @@ CodeMirror.defineMode("1c", function(conf, parserConf) {
 
     var openingKeywords = ['если', 'if', 'пока', 'while', 'для', 'for', 'процедура', 'procedure', 'функция', 'function', 'попытка', 'try'];
     var middleKeywords = ['иначе', 'else', 'иначеесли', 'elsif', 'исключение', 'except'];
-    var doubleClosing = wordRegexp(['конецесли', 'endif', 'конеццикла',  'конецпроцедуры', 'endprocedure', 'конецфункции', 'endfunction', 'конецпопытки', 'endtry']);
+    var doubleClosing = wordRegexp(['конецесли', 'endif', 'конеццикла', 'enddo', 'конецпроцедуры', 'endprocedure', 'конецфункции', 'endfunction', 'конецпопытки', 'endtry']);
     var endKeywords = ['loop'];
     var operatorKeywords = ['and', 'or', 'not', 'xor', 'in'];
     var commonKeywords = ['новый', 'new', 'каждого', 'each', 'из', 'from', 'цикл', 'do', 'или', 'or', 'не', 'not', 'ложь', 'false', 'истина', 'true', 'и','and', 'возврат', 'return', 'тогда', 'then', 'экспорт', 'export', 'неопределено', 'undefined', 'продолжить', 'continue', 'прервать', 'break', 'перейти', 'goto', 'по', 'to' , 'null'];
