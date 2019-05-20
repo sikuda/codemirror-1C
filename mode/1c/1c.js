@@ -30,7 +30,7 @@ CodeMirror.defineMode("1c", function(conf, parserConf) {
     var endKeywords = ['loop'];
     var operatorKeywords = ['and', 'or', 'not', 'xor', 'in'];
     var commonKeywords = ['новый', 'new', 'каждого', 'each', 'из', 'from', 'цикл', 'do', 'или', 'or', 'не', 'not', 'ложь', 'false', 'истина', 'true', 'и','and', 'возврат', 'return', 'тогда', 'then', 'экспорт', 'export', 'неопределено', 'undefined', 'продолжить', 'continue', 'прервать', 'break', 'перейти', 'goto', 'по', 'to' , 'null'];
-    var commontypes = ['перем', 'var'];
+    var commontypes = ['перем', 'var', 'знач', 'val'];
 
     var wordOperators = wordRegexp(operatorKeywords);
     var keywords = wordRegexp(commonKeywords);
