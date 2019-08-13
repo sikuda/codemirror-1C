@@ -21,3 +21,6 @@ Example code for plugin(Пример использования плагина):
 
 Wordpress plugin(плагин Wordpress)
 - codemirror.zip
+
+Обработка для 1С - Выполнятор кода
+https://infostart.ru/public/994455/
