@@ -3,10 +3,14 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=10"/>
 <link rel="stylesheet" href="lib/codemirror.css">
+<link rel="stylesheet" href="addon/fold/foldgutter.css">
 <script src="lib/codemirror.js"></script>
-<script src="mode/javascript/javascript.js"></script>
+<script src="addon/fold/1cfold.js"></script>
+<script src="addon/fold/foldcode.js"></script>
+<script src="addon/fold/foldgutter.js"></script>
+<!-- <script src="mode/javascript/javascript.js"></script> -->
 <script src="mode/1c/1c.js"></script>
-<script src="1Cjs.js"></script>
+<!-- <script src="1Cjs.js"></script> -->
 <link rel="stylesheet" href="theme/1c.css">
 <body>
   <textarea id="code" name="code"></textarea>
@@ -24,11 +28,14 @@
       readOnly: false,
       highlightSelectionMatches: {showToken: /[0-9a-zA-Zа-яёА-ЯЁ&]/, annotateScrollbar: false},
       mode: "text/x-1c",
-      theme: '1c'
+      theme: '1c',
+		  foldGutter: true,
+		  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
     });
     var content = 'Если file = "" Тогда\nxx=1; //xx\nИначе\nКонецЕсли;\n\n&НаСервере\nПроцедура\n ОбновитьОбработку(Результат, ДопПараметры) Экспорт //\nПерем сс;\nЕсли Результат = КодВозвратаДиалога.Да Тогда\n//прим\nКонецЕсли;\n\nЕсли file = "" Тогда\nВозврат;\nКонецЕсли;\n\nЕсли Лев( file,5) = "e1cib" Тогда\nДанные = Новый ДвоичныеДанные(ИмяВремФайла);\nЕсли ЗаписатьВнешниюОбработкуВБазу(Данные) Тогда\n//ОткрытьФорму("ВнешняяОбработка.SeftUpdateManage.Форма",,,Истина);\nЭтаФорма.Закрыть();\nКонецЕсли;\nВозврат;\nИначе\nОповещение = Новый ОписаниеОповещения( "ОбработкаПомеремещениеФайла", ЭтотОбъект);\nНачатьПеремещениеФайла(Оповещение, ИмяВремФайла, file);\nКонецЕсли;\n\nКонецПроцедуры';
     editor.setValue(content);
+    editor.foldCode(0);
     for (var i =0; i< editor.lineCount(); i++) { editor.indentLine(i); }
     editor.setSize("100%","49%");
-  </script>  
+  </script>
 </body> 

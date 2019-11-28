@@ -19,7 +19,9 @@ for (var i = 0; i < arrayOfCode.length; i++) {
 		  readOnly: true,
 		  highlightSelectionMatches: {showToken: /[0-9a-zA-Zа-яёА-ЯЁ&><]/, annotateScrollbar: false},
 		  mode: "text/x-1c",
-		  theme: '1c'
+		  theme: '1c',
+		  foldGutter: true,
+		  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
 		});
 		editor.setValue(content);
 		for (var j =0; j< editor.lineCount(); j++) { editor.indentLine(j); }
