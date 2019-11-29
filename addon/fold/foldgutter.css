@@ -1,0 +1,34 @@
+.CodeMirror-foldmarker {
+  color: blue;
+  text-shadow: #b9f 1px 1px 2px, #b9f -1px -1px 2px, #b9f 1px -1px 2px, #b9f -1px 1px 2px;
+  font-family: arial;
+  line-height: .3;
+  cursor: pointer;
+}
+.CodeMirror-foldgutter {
+  width: 18px;
+  /* align-content: stretch; */
+  align-items: stretch;
+  /* height: 100%; */
+  /* border-left: gray solid 1px; */
+}
+.CodeMirror-gutter-elt {
+  text-align: center;
+}
+.CodeMirror-foldgutter-open,
+.CodeMirror-foldgutter-folded {
+  cursor: pointer;
+}
+.CodeMirror-foldgutter-open:after {
+  content: "\229E";
+  font-size: large;
+  color: gray;
+  /* CodeMirror-line  */
+  /* align-content: stretch; */
+}
+.CodeMirror-foldgutter-folded:after {
+  content: "\229F";
+  font-size: large;
+  color: gray;
+  /* align-content: stretch; */
+}
