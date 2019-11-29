@@ -12,6 +12,8 @@ The theme is made in color in 1C by default and is fully consistent with the wor
 (Тема сделана по цветовому оформлению в 1С по умолчанию и полностью соответствует работе внутри самой систеиы 1С. 
 Цветовое оформление не самое приятное на вид, но узнаваемое при любом кусочке кода. Будем его придерживаться.)
 
+Add folding for code(Добавлена группировка функций и процедур - свернуть/развернуть спасибо Александру)
+
 Additionals for wordpress (Дополнительные файлы для Wordpress plugin):
 - codemirror1c.js
 - codemirror1c.php
