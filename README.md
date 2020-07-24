@@ -6,7 +6,7 @@ Work files(рабочие файлы):
 - mode/1c/1c.js
 - theme/1c.scc
 - index.html - test file   
-test - http://www-1c.ruru/wp-content/plugins/codemirror1c/
+test - http://www-1c.ru/wp-content/plugins/codemirror1c/
 
 The theme is made in color in 1C by default and is fully consistent with the work within the system 1C. 
 (Тема сделана по цветовому оформлению в 1С по умолчанию и полностью соответствует работе внутри самой систеиы 1С. 
