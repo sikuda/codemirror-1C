@@ -1,12 +1,12 @@
-Add to project codemirror.net for 1C languge/http://1c.ru/. (Дополнения для проекта codemirror.net для языка 1С.)
-http://code1c.sikuda.ru
+Add to project codemirror.net for 1C languge http://1c.ru/. (Дополнения для проекта codemirror.net для языка 1С.)
+http://www-1c.ru
 MIT licence as parent - http://codemirror.net/LICENSE
 
 Work files(рабочие файлы):
 - mode/1c/1c.js
 - theme/1c.scc
 - index.html - test file   
-test - http://code1c.sikuda.ru/wp-content/plugins/codemirror1c/
+test - http://www-1c.ruru/wp-content/plugins/codemirror1c/
 
 The theme is made in color in 1C by default and is fully consistent with the work within the system 1C. 
 (Тема сделана по цветовому оформлению в 1С по умолчанию и полностью соответствует работе внутри самой систеиы 1С. 
